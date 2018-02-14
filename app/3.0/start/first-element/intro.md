@@ -100,13 +100,12 @@ To install the element's dependencies and run the demo:
 
 2.  Run the Polymer development server from the project directory:
 
-        polymer serve --npm 
+        polymer serve --open --npm 
 
-    **TODO: What does the `--npm` flag do? Why do we need it?**
+    The `--npm` flag tells the Polymer development server to find the Polymer library,
+    and any web components you install from third parties, in the node_modules folder.
     
-    Visit the first link in the output (the link for `applications`). If you have no other local web servers running, this should be <a href="http://127.0.0.1:8081">http://127.0.0.1:8081</a>.
-    
-    **TODO: Fix path shenanigans so that `polymer serve --open --npm` will work**
+    Your browser opens with a demo of the element you created.
 
     You’ll see some text where the icon toggles should appear. It doesn’t look
     very interesting, but it shows that everything is working.
