@@ -15,36 +15,12 @@ This step takes you through the process of adding a new page or top-level view t
 First, create a new custom element that encapsulates the contents of
 your new view.
 
-1.  Create a new file called `src/my-new-view.html` and open it in an editor.
+1.  Create a new file called `src/my-new-view.js` and open it in an editor.
 
 2.  Add some scaffolding for a new custom element definition using Polymer:
 
-    ```html
-    <!-- Load the Polymer.Element base class -->
-    <link rel="import" href="../bower_components/polymer/polymer-element.html">
-
-    <dom-module id="my-new-view">
-      <!-- Defines the element's style and local DOM -->
-      <template>
-        <style>
-          :host {
-            display: block;
-
-            padding: 16px;
-          }
-        </style>
-
-        <h1>New view</h1>
-      </template>
-      <script>
-        // Your new element extends the Polymer.Element base class
-        class MyNewView extends Polymer.Element {
-          static get is() { return 'my-new-view'; }
-        }
-        //Now, register your new custom element so the browser can use it
-        customElements.define(MyNewView.is, MyNewView);
-      </script>
-    </dom-module>
+    ```js
+    
     ```
 
 For now your element is very basic, and just has a `<h1>` that says "New view",
@@ -55,7 +31,7 @@ but we can return to it and make it more interesting later.
 Your element is defined, but your app isn't actually using it yet. To use it,
 you need to add it to your app's HTML.
 
-1.  Open `src/my-app.html` in a text editor.
+1.  Open `src/my-app.js` in a text editor.
 
 1.  Find the set of existing pages inside the `<iron-pages>`:
 
@@ -97,30 +73,24 @@ you need to add it to your app's HTML.
     </iron-pages>
     ```
 
+    `%TODO: Find out how lazy loading will be done in p3 version of this template`
+
     Note: Normally when adding a new custom element for the first time, you'd
-    want to add an HTML import to ensure the component definition has been
-    loaded.  However, this app template is already set up to lazy-load top
+    want to import the module to ensure the component definition has been
+    loaded. However, this app template is already set up to lazy-load top
     level views on-demand based on the route, so in this case you don't need
     to add an import for your new `<my-new-view>` element.
-
+        
     The following code that came with the app template will ensure the
     definition for each page has been loaded when the route changes.  As
-    you can see, the app follows a simple convention (`'my-' + page + '.html'`)
+    you can see, the app follows a simple convention (`'my-' + page + '.js'`)
     when importing the definition for each route. You can adapt this code as you
     like to handle more complex routing and lazy loading.
 
     Existing template code—you do not need to add this { .caption }
 
     ```
-      _pageChanged(page) {
-        // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
-        Polymer.importHref(
-            resolvedPageUrl,
-            null,
-            this._showPage404.bind(this),
-            true);
-      }
+    ... 
     ```
 
 ## Create a navigation menu item
@@ -128,7 +98,7 @@ you need to add it to your app's HTML.
 You've defined your new element and declared it in your app. Now you
 just need to add a menu item in the left-hand drawer so that users can navigate to the new page.
 
-1.  Keep `src/my-app.html` open in your editor.
+1.  Keep `src/my-app.js` open in your editor.
 
 1.  Find the navigation menu inside the `<app-drawer>` element.
 
@@ -169,9 +139,9 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
     ...
     ```
 
-Your new page is now ready! Serve your app with `polymer serve --open`.
+Your new page is now ready! Serve your app with `polymer serve --open --npm`.
 
-![Example new page](/images/2.0/toolbox/new-view.png)
+![Example new page](/images/3.0/toolbox/new-view.png)
 
 ## Register the page for the build
 
@@ -181,19 +151,21 @@ demand-loaded fragments like the lazy-loaded view you just added.
 
 1.  Open `polymer.json` in a text editor.
 
-1.  Add `src/my-new-view.html` to the list of `fragments`.
+1.  Add `src/my-new-view.js` to the list of `fragments`.
 
     The new list should look like this:
 
     ```
     "fragments": [
-      "src/my-view1.html",
-      "src/my-view2.html",
-      "src/my-view3.html",
-      "src/my-new-view.html",
-      "src/my-view404.html"
+      "src/my-view1.js",
+      "src/my-view2.js",
+      "src/my-view3.js",
+      "src/my-new-view.js",
+      "src/my-view404.js"
     ]
     ```
+
+`TODO: next para is probably all wrong`
 
 Note: You only need to add files you will lazy load or import using the `async`
 attribute to the `fragments` list.  Any files that are imported using synchronous

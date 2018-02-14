@@ -24,8 +24,8 @@ To install Polymer CLI:
 
     npm install -g polymer-cli
 
-
 ## Initialize your project from a template
+
 1. Create a new project folder to start from.
 
         mkdir my-app
@@ -35,7 +35,7 @@ To install Polymer CLI:
 
         polymer init
 
-    Press the down arrow until `polymer-2-starter-kit` is highlighted and press the enter / return
+    Press the down arrow until `polymer-3-starter-kit` is highlighted and press the enter / return
     key to select.
 
 
@@ -48,7 +48,9 @@ your browser.
 
 To serve your project:
 
-    polymer serve --open
+    polymer serve --open --npm
+
+Note: The `--npm` flag tells the Polymer development server to find the Polymer library and any components you add to your project in `node_modules`.
 
 ## Project structure
 
@@ -56,24 +58,7 @@ The diagram below is a brief summary of the files and directories within
 the project.
 
 ```text
-bower.json             # bower configuration
-bower_components/      # app dependencies
-images/
-index.html             # main entry point into your app
-manifest.json          # app manifest configuration
-package.json           # npm metadata file
-polymer.json           # Polymer CLI configuration
-service-worker.js      # auto-generated service worker
-src/                   # app-specific elements
-  my-app.html            # top-level element
-  my-icons.html          # app icons
-  my-view1.html          # sample views or "pages"
-  my-view2.html
-  my-view3.html
-  my-view404.html        # sample 404 page
-  shared-styles.html     # sample shared styles
-sw-precache-config.js  # service worker pre-cache configuration
-test/                  # unit tests
+
 ```
 
 ## Next steps
@@ -84,5 +69,5 @@ a page to your app.
 <a class="blue-button"
     href="create-a-page">Next step: Create a page</a>
 
-[toolbox]: /2.0/toolbox/
+[toolbox]: /3.0/toolbox/
 [md]: http://www.google.com/design/spec/material-design/introduction.html

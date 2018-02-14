@@ -9,9 +9,11 @@ In this step, you'll deploy your application to the web.
 
 ## Build for deployment
 
+`TODO: Check this`
+
 Type `polymer build` to build your Polymer application for production. 
 
-You can serve different builds of your app to browsers with different capabilities. The Polymer Starter Kit is configured to create three builds:
+You can serve different builds of your app to browsers with different capabilities. The Polymer Starter Kit is configured to create 3 builds:
 
 * A bundled, minified build with a service worker, compiled to ES5 for compatibility with older browsers.
 * A bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 code.
@@ -45,7 +47,7 @@ The builds will be output to subfolders under the `build/` folder as follows:
       es6-bundled/
       es6-unbundled/
 
-To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](https://www.polymer-project.org/2.0/docs/tools/polymer-json) and [building your Polymer application for production](https://www.polymer-project.org/2.0/toolbox/build-for-production).
+To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](https://www.polymer-project.org/3.0/docs/tools/polymer-json) and [building your Polymer application for production](https://www.polymer-project.org/3.0/toolbox/build-for-production).
 
 ## Deploy to a server
 
@@ -88,8 +90,8 @@ and create a new project.
     threadsafe: yes
 
     handlers:
-    - url: /bower_components
-      static_dir: build/es5-bundled/bower_components
+    - url: /node_modules
+      static_dir: build/es5-bundled/node_modules
       secure: always
 
     - url: /images
@@ -147,7 +149,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Go to [https://www.firebase.com/account](https://www.firebase.com/account) to create a new app. Make note of the project ID associated with your app.
 
-    ![Welcome to Firebase showing Project ID](/images/2.0/toolbox/welcome-firebase.png)
+    ![Welcome to Firebase showing Project ID](/images/3.0/toolbox/welcome-firebase.png)
 
 1.  Install the Firebase command line tools.
 
