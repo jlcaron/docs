@@ -779,13 +779,13 @@ The `Polymer.FlattenedNodesObserver` class can be used to replace the 1.x `obser
 1.x {.caption}
 
 ```js
-this._observer = Polymer.dom(nodeToObserve).observeNodes(this._nodesChanged);
+this._observer = Polymer.dom(nodeToObserve).observeNodes(callback);
 ```
 
 2.x {.caption}
 
 ```js
-this._observer = new Polymer.FlattenedNodesObserver(nodeToObserve, this._nodesChanged);
+this._observer = new Polymer.FlattenedNodesObserver(nodeToObserve, callback);
 ```
 
 In addition, `Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` can be used to replace the
@@ -811,18 +811,27 @@ To replace the `getContentChildren` method, write platform code to perform this 
 1.x {.caption}
 
 ```
-this.getContentChildren();
+this.getContentChildren(selector);
 ```
 
 2.x {.caption}
 
 ```js
-this.shadowRoot
-  // If you have more than one slot, you can use a
-  // different selector to identify the slot you're interested in.
-  .querySelector('slot')
-  .assignedNodes({flatten:true})
-  .filter(n => n.nodeType === Node.ELEMENT_NODE)
+  /**
+   * Returns a list of element children for the requested element.
+   * @param {string=} slctr CSS selector to choose the desired element.
+   *   Defaults to `slot`.
+   * @return {!Array<!HTMLElement>} List of distributed nodes
+   */
+  getContentChildren(slctr = 'slot') {
+    const element = this.shadowRoot.querySelector(slctr);
+    if (element) {
+      return element.assignedNodes({flatten: true})
+          .filter(n => n.nodeType === Node.ELEMENT_NODE);
+    } else {
+      return [];
+    }
+  }
 ```
 
 `Polymer.FlattenedNodesObserver` is an optional module. If you're loading the `polymer-element.html`
